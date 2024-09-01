@@ -21,15 +21,14 @@
           required
         />
       </div>
+      
       <div class="mb-3">
         <label for="type" class="form-label">Type :</label>
-        <input
-          type="text"
-          class="form-control"
-          v-model="type"
-          id="type"
-          required
-        />
+        <select class="input form-select" v-model="type" id="type" required>
+          <option value="Entrée">Entrée</option>
+          <option value="Plat">Plat</option>
+          <option value="Dessert">Dessert</option>
+        </select>
       </div>
       <button class="clr btn text-white mt-3 mb-4 me-3">
       Ajouter

@@ -26,13 +26,11 @@
       </div>
       <div class="mb-3">
         <label for="type" class="form-label">Type :</label>
-        <input
-          type="text"
-          class="form-control"
-          v-model="type"
-          id="type"
-          required
-        />
+        <select class="input form-select" v-model="type" id="type" required>
+          <option>Entrée</option>
+          <option>Plat</option>
+          <option>Dessert</option>
+        </select>
       </div>
       <button class="clr btn mt-3 mb-4 me-3 text-white">Enregistrer</button>
       <RouterLink
