@@ -1,4 +1,4 @@
-# vue-gestion-tache
+# vue-gestion-recette
 
 ## Description
 
