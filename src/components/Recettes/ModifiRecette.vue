@@ -14,7 +14,7 @@
           required
         />
       </div>
-      <div class="mb-3">
+      <!-- <div class="mb-3">
         <label for="ingredient" class="form-label">Ingredients :</label>
         <input
           type="text"
@@ -23,6 +23,15 @@
           id="ingredient"
           required
         />
+      </div> -->
+      <div class="mb-3">
+        <label for="ingredient" class="form-label">Ingrédients :</label>
+        <textarea
+          class="form-control"
+          v-model="ingredient"
+          id="ingredient"
+          required
+        ></textarea>
       </div>
       <div class="mb-3">
         <label for="type" class="form-label">Type :</label>
@@ -93,5 +102,8 @@ const handleUpdateRecette = () => {
   padding: 20px;
   margin: auto;
   margin-top: 16vh;
+}
+textarea {
+  resize: none;
 }
 </style>
