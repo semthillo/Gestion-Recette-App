@@ -14,16 +14,6 @@
           required
         />
       </div>
-      <!-- <div class="mb-3">
-        <label for="ingredient" class="form-label">Ingredients :</label>
-        <input
-          type="text"
-          class="form-control"
-          v-model="ingredient"
-          id="ingredient"
-          required
-        />
-      </div> -->
       <div class="mb-3">
         <label for="ingredient" class="form-label">Ingrédients :</label>
         <textarea
