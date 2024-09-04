@@ -22,7 +22,7 @@ export const useGestionStore = defineStore("gestion", {
       this.recettes.push(recette);
     },
     deleteRecette(id) {
-      this.recettes.splice(id, 1);
+      this.recettes= this.recettes.filter((r) => r.id !== id)
     },
     updateRecette(updatedRecette) {
       const index = this.recettes.findIndex(p => p.id === updatedRecette.id);

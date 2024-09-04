@@ -1,6 +1,6 @@
 <template>
   <div class="page-background container mt-5">
-    <h1 class="animated-header mt-4 text-center">Welcome your in a good place</h1>
+    <h1 class="animated-header mt-4 text-center">Welcome you're at a good place</h1>
     <div class="d-flex flex-row justify-content-center">
       <div class="card mt-5 me-5" style="width: 18rem; height: fit-content">
         <img

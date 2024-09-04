@@ -24,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(recette, index) in store.recettes" :key="index">
+          <tr v-for="recette in store.recettes" :key="recette.id">
             <td>{{ recette.id }}</td>
             <td>{{ recette.title }}</td>
             <td>{{ recette.ingredient }}</td>
@@ -92,8 +92,8 @@ const closeModal = () => {
   isModalVisible.value = false;
 };
 
-const destroyRecette = () => {
-  store.deleteRecette();
+const destroyRecette = (id) => {
+  store.deleteRecette(id);
 };
 </script>
    
