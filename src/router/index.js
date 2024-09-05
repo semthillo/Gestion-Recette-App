@@ -6,7 +6,7 @@ import ModifiRecette from '@/components/Recettes/ModifiRecette.vue'
 import HomePage from '@/components/HomePage.vue'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     
     {
