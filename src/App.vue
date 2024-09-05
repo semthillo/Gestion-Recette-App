@@ -14,7 +14,7 @@ import { RouterLink, RouterView } from 'vue-router'
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <RouterLink class="nav-link text-white fw-bold" to="/recette">Recette</RouterLink>
+                <RouterLink class="nav-link text-white fw-bold" to="/listrecette">Recette</RouterLink>
               </li>
             </ul>
           </div>
