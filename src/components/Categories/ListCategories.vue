@@ -2,14 +2,14 @@
   <div class="page-background container bg-color mt-5">
     <RouterLink
       class="list text-decoration-none text-white me-5 fw-bold"
-      to="/ajoutrecette"
+      to="/ajout-category"
     >
       <button
         class="clr btn text-white mt-5 mb-4 fw-bold"
         v-if="affichebtn"
         @click="maskBtn"
       >
-        Ajouter une recette
+        Ajouter une categorie
       </button>
     </RouterLink>
     <div class="table-responsive">
@@ -17,26 +17,22 @@
         <thead class="table-success">
           <tr>
             <th>Id</th>
-            <th>Titre</th>
-            <th>Ingredients</th>
-            <th>Type de recette</th>
+            <th>Name</th>
             <th class="text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="recette in store.recettes" :key="recette.id">
-            <td>{{ recette.id }}</td>
-            <td>{{ recette.title }}</td>
-            <td>{{ recette.ingredients }}</td>
-            <td>{{ recette.type }}</td>
+          <tr v-for="category in store.categories" :key="category.id">
+            <td>{{ category.id }}</td>
+            <td>{{ category.name }}</td>
             <td class="text-center">
-              <button class="btn btn-sm" @click="openModal(recette)">
+              <button class="btn btn-sm" @click="openModal(category)">
                 <i
                   class="fa-solid fa-eye"
                   style="color: #4596d3; font-size: 25px"
                 ></i>
               </button>
-              <RouterLink :to="{ path: `/modifierecette/${recette.id}` }">
+              <RouterLink :to="{ path: `/modifie-category/${category.id}` }">
                 <button class="btn btn-sm">
                   <i
                     class="fa-solid fa-pen-to-square"
@@ -44,7 +40,7 @@
                   ></i>
                 </button>
               </RouterLink>
-              <button class="btn btn-sm" @click="destroyRecette(recette.id)">
+              <button class="btn btn-sm" @click="destroyCategory(category.id)">
                 <i
                   class="fa-solid fa-trash"
                   style="color: #e30d0d; font-size: 25px"
@@ -60,11 +56,7 @@
     <div class="modal-content" @click.stop>
       <div class="modal-body">
         <h3>Détails du Recette</h3>
-            <p><strong>Titre :</strong> {{ selectedRecette.title }}</p>
-            <p>
-              <strong>Ingredients :</strong> {{ selectedRecette.ingredients }}
-            </p>
-            <p><strong>Type :</strong> {{ selectedRecette.type }}</p>
+            <p><strong>Name :</strong> {{ selectedRecette.name }}</p>
       </div>
       <button class="btn btn-danger" @click="closeModal">Fermer</button>
     </div>
@@ -72,11 +64,10 @@
 </template>
 
 <script setup>
-// import { ref } from "vue";
 import { onMounted, ref } from "vue";
 import { useGestionStore } from "@/stores/gestion";
-
 const store = useGestionStore();
+
 let affichebtn = true;
 const maskBtn = () => {
   affichebtn = false;
@@ -84,8 +75,8 @@ const maskBtn = () => {
 const isModalVisible = ref(false);
 const selectedRecette = ref(null);
 
-const openModal = (recete) => {
-  selectedRecette.value = recete;
+const openModal = (category) => {
+  selectedRecette.value = category;
   isModalVisible.value = true;
 };
 
@@ -94,11 +85,12 @@ const closeModal = () => {
 };
 
 onMounted(() => {
-  store.loadDataFromApi();
+  store.loadDataFromCategorieApi();
 });
-const destroyRecette = (id) => {
-  store.deleteRecette(id);
+const destroyCategory = (id) => {
+  store.deleteCategory(id);
 };
+
 </script>
    
 <style scoped>

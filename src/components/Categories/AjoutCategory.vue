@@ -1,22 +1,22 @@
 <template>
   <div class="container">
     <form
-      @submit.prevent="addRecette"
+      @submit.prevent="addCategory"
       class="formulaire form mb-5 shadow p-3 mb-5 bg-body rounded"
     >
-    <h1>{{ `size is ${size}` }}</h1>
+    <!-- <h1>{{ `size is ${size}` }}</h1> -->
 
       <div class="mb-3">
-        <label for="title" class="form-label">Tilte :</label>
+        <label for="name" class="form-label">Name :</label>
         <input
           type="text"
           class="form-control"
-          v-model="title"
-          id="title"
+          v-model="name"
+          id="name"
           required
         />
       </div>
-      <div class="mb-3">
+      <!-- <div class="mb-3">
         <label for="ingredient" class="form-label">Ingrédients :</label>
         <textarea
           class="form-control"
@@ -33,11 +33,11 @@
           <option value="Plat">Plat</option>
           <option value="Dessert">Dessert</option>
         </select>
-      </div>
+      </div> -->
       <button class="clr btn text-white mt-3 mb-4 me-3">Ajouter</button>
       <RouterLink
         class="list text-decoration-none text-white me-5 fw-bold"
-        to="/listrecette"
+        to="/list-category"
       >
         <button class="btn btn-danger mt-3 mb-4">Annuler</button>
       </RouterLink>
@@ -53,9 +53,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 import { ref } from "vue";
 const store = useGestionStore();
-const title = ref("");
-const ingredient = ref("");
-const type = ref("");
+const name = ref("");
 // const size = ref(0);
 // const axiosAddRecette = async() => {
 //   try {
@@ -69,23 +67,28 @@ const type = ref("");
  
 // };
 
-const addRecette = async () => {
-  try {
-    await store.addRecete({
-    title: title.value,
-    ingredient: ingredient.value,
-    type: type.value,
-  });
+// const addCategory = async () => {
+//   try {
+//     await store.addCategory(name.value);
 
-  title.value = "";
-  ingredient.value = "";
-  type.value = "";
-  router.push("/listrecette");
-  } catch (error) {
-    console.log(error)    
-  }
+//   name.value = "";
+//   router.push("/list-category");
+//   } catch (error) {
+//     console.log(error)    
+//   }
   
+// };
+const addCategory = async () => {
+  try {
+    await store.addCategory(name.value);
+    name.value = "";
+    router.push("/list-category");
+  } catch (error) {
+    console.log(error.response.data);  // Voir les détails de l'erreur
+  }
 };
+
+
 </script> 
 
 <style scoped>

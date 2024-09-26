@@ -16,6 +16,9 @@ import { RouterLink, RouterView } from 'vue-router'
               <li class="nav-item">
                 <RouterLink class="nav-link text-white fw-bold" to="/listrecette">Recette</RouterLink>
               </li>
+              <li class="nav-item">
+                <RouterLink class="nav-link text-white fw-bold" to="/axios-categories">Axios Recette</RouterLink>
+              </li>
             </ul>
           </div>
         </div>
