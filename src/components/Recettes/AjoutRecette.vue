@@ -1,12 +1,16 @@
 <template>
   <div class="container">
+    <div class="mb-4 d-flex justify-content-end">
+      <button @click="changelocaleuage('en')" class="btn btn-primary me-2">English</button>
+      <button @click="changelocaleuage('fr')" class="btn btn-primary">Français</button>
+    </div>
     <form
       @submit.prevent="handleAddRecipe"
       class="formulaire form mb-5 shadow p-3 mb-5 bg-body rounded"
     >
 
       <div class="mb-3">
-        <label for="title" class="form-label">Tilte :</label>
+        <label for="title" class="form-label">{{ $t('title') }} :</label>
         <input
           type="text"
           class="form-control"
@@ -16,7 +20,7 @@
         />
       </div>
       <div class="mb-3">
-        <label for="ingredients" class="form-label">Ingrédients :</label>
+        <label for="ingredients" class="form-label">{{ $t('ingredients') }} :</label>
         <textarea
           class="form-control"
           v-model="ingredients"
@@ -26,22 +30,22 @@
       </div>
 
       <div class="mb-3">
-        <label for="type" class="form-label">Type :</label>
+        <label for="type" class="form-label">{{ $t('type') }} :</label>
         <select class="input form-select" v-model="type" id="type" required>
-          <option value="entry">entry</option>
-          <option value="plat">plat</option>
-          <option value="desert">desert</option>
+          <option value="entry">{{ $t('entry') }}</option>
+          <option value="plat">{{ $t('main_course') }}</option>
+          <option value="desert">{{ $t('dessert') }}</option>
         </select>
       </div>
       <div class="mb-3">
-        <label for="category" class="form-label">Catégorie :</label>
+        <label for="category" class="form-label">{{ $t('category') }}</label>
         <select
           class="form-select"
           v-model="selectedCategory"
           id="category"
           required
         >
-          <option value="" disabled selected>-- Sélectionnez une catégorie --</option>
+          <option value="" disabled selected>-- {{ $t('categorySelect') }} --</option>
           <option
             v-for="category in store.categories"
             :key="category.id"
@@ -51,12 +55,12 @@
           </option>
         </select>
       </div>
-      <button class="clr btn text-white mt-3 mb-4 me-3">Ajouter</button>
+      <button class="clr btn text-white mt-3 mb-4 me-3">{{ $t('add') }}</button>
       <RouterLink
         class="list text-decoration-none text-white me-5 fw-bold"
         to="/listrecette"
       >
-        <button class="btn btn-danger mt-3 mb-4">Annuler</button>
+        <button class="btn btn-danger mt-3 mb-4">{{ $t('cancel') }}</button>
       </RouterLink>
     </form>
   </div>
@@ -65,7 +69,7 @@
 <script setup>
 import { useGestionStore } from "@/stores/gestion";
 import { useRouter } from "vue-router";
-
+import { ref, getCurrentInstance } from "vue";
 const router = useRouter();
 import { ref, onMounted } from "vue";
 const store = useGestionStore();
@@ -92,6 +96,12 @@ const handleAddRecipe = async () => {
   } catch (error) {
     
   }
+};
+const { proxy } = getCurrentInstance();
+
+
+const changelocaleuage = (locale) => {
+  proxy.$i18n.locale = locale;
 };
 
 </script> 

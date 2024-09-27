@@ -1,5 +1,9 @@
 <template>
   <div class="page-background container bg-color mt-5">
+    <div class="mb-4 d-flex justify-content-end">
+      <button @click="changeLanguage('en')" class="btn btn-primary me-2">English</button>
+      <button @click="changeLanguage('fr')" class="btn btn-primary">Français</button>
+    </div>
     <RouterLink
       class="list text-decoration-none text-white me-5 fw-bold"
       to="/ajout-recette"
@@ -9,18 +13,18 @@
         v-if="affichebtn"
         @click="maskBtn"
       >
-        Ajouter une recette
+      {{ $t('add_recipe') }}
       </button>
     </RouterLink>
     <div class="table-responsive">
       <table class="table table-striped table-bordered border-black">
         <thead class="table-success">
           <tr>
-            <th>Id</th>
-            <th>Titre</th>
-            <th>Ingredients</th>
-            <th>Type de recette</th>
-            <th>Catégorie</th>
+            <th>{{ $t('id') }}</th>
+            <th>{{ $t('title') }}</th>
+            <th>{{ $t('ingredients') }}</th>
+            <th>{{ $t('recipe_type') }}</th>
+            <th>{{ $t('category') }}</th>
             <th class="text-center">Actions</th>
           </tr>
         </thead>
@@ -63,15 +67,15 @@
   <div v-if="isModalVisible" class="modal-overlay" @click="closeModal">
     <div class="modal-content" @click.stop>
       <div class="modal-body">
-        <h3>Détails du Recette</h3>
-            <p><strong>Titre :</strong> {{ selectedRecette.title }}</p>
+        <h3>{{ $t('recipe_details') }}</h3>
+            <p><strong>{{ $t('title') }} :</strong> {{ selectedRecette.title }}</p>
             <p>
-              <strong>Ingredients :</strong> {{ selectedRecette.ingredients }}
+              <strong>{{ $t('ingredients') }} :</strong> {{ selectedRecette.ingredients }}
             </p>
-            <p><strong>Type :</strong> {{ selectedRecette.type }}</p>
-            <p><strong>Category :</strong> {{ selectedRecette.category }}</p>
+            <p><strong>{{ $t('recipe_type') }} :</strong> {{ selectedRecette.type }}</p>
+            <p><strong>{{ $t('category') }} :</strong> {{ selectedRecette.category }}</p>
       </div>
-      <button class="btn btn-danger" @click="closeModal">Fermer</button>
+      <button class="btn btn-danger" @click="closeModal">{{ $t('close') }}</button>
     </div>
   </div>
 </template>
@@ -104,6 +108,13 @@ onMounted(() => {
 });
 const destroyRecette = (id) => {
   store.deleteRecette(id);
+};
+import { getCurrentInstance } from 'vue';
+
+const { proxy } = getCurrentInstance();
+
+const changeLanguage = (locale) => {
+  proxy.$i18n.locale = locale;
 };
 </script>
    

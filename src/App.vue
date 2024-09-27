@@ -5,19 +5,19 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <div class="page-background">
     <header>
-      <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
+      <nav class="navbar navbar-expand-lg custom-navbar ">
         <div class="container">
-          <RouterLink class="navbar-brand text-decoration-none text-white fw-bold" to="/">GestionRecette</RouterLink>
+          <RouterLink class="navbar-brand text-decoration-none text-white fw-bold" to="/">{{ $t('Recipe management') }}</RouterLink>
           <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <RouterLink class="nav-link text-white fw-bold" to="/listrecette">Recette</RouterLink>
+                <RouterLink class="nav-link text-white fw-bold" to="/listrecette">{{ $t('navbar.recipes') }}</RouterLink>
               </li>
               <li class="nav-item">
-                <RouterLink class="nav-link text-white fw-bold" to="/axios-categories">Axios Recette</RouterLink>
+                <RouterLink class="nav-link text-white fw-bold" to="/axios-categories">{{ $t('navbar.axiosRecipes') }}</RouterLink>
               </li>
             </ul>
           </div>

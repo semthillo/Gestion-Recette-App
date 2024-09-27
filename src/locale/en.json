@@ -1,0 +1,60 @@
+{
+  "form": {
+    "name": "Name"
+  },
+  
+  "navbar": {
+    "recipes": "Recipe",
+    "axiosRecipes": "Axios Recipe"
+  },
+  "buttons": {
+    "english": "English",
+    "french": "French",
+    "add": "Add Category",
+    "cancel": "Cancel"
+  },
+  "table": {
+    "id": "Id",
+    "name": "Name",
+    "actions": "Actions"
+  },
+  "modal": {
+    "categoryDetails": "Category Details",
+    "name": "Name"
+  },
+  "ingredients": "Ingredients",
+  "type": "Type",
+  "entry": "Entry",
+  "main_course": "Main Course",
+  "dessert": "Dessert",
+  "add": "Add",
+  "cancel": "Cancel",
+  "size_is": "Size is {size}",
+  "add_recipe": "Add Recipe",
+  "recipe": "Recipe",
+  "id": "ID",
+  "title": "Title",
+  "Recipe management":"Recipe management",
+  "recipe_type": "Recipe Type",
+  "actions": "Actions",
+  "recipe_details": "Recipe Details",
+  "category": "category",
+  "categorySelect": "Select a category",
+
+  "close": "Close",
+
+  "starter": "Starter",
+
+  "save": "Save",
+
+  "welcome_message": "Welcome you're at a good place",
+  "yassa": {
+    "description": "Poulet Yassa is a dish made from chicken marinated in an onion, lemon, mustard, and spice sauce, then grilled or fried. It is usually served with rice."
+  },
+  "niebe": {
+    "description": "Niébé is a popular dish in West Africa, often prepared with white or red beans cooked in a spicy sauce made with tomatoes, onions, garlic, and sometimes with meat or fish."
+  },
+  "rice": {
+    "description": "Riz au Poisson consists of rice cooked in a spicy tomato sauce with fish, vegetables (carrots, cabbage, eggplants), and spices, offering a rich and delicious flavor."
+  }
+}
