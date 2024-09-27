@@ -1,7 +1,6 @@
 <template>
   <div class="page-background container bg-color mt-5">
-    <div class="mb-3">
-  </div>
+    <div class="mb-3"></div>
     <RouterLink
       class="list text-decoration-none text-white me-5 fw-bold"
       to="/ajout-recette"
@@ -18,40 +17,40 @@
       <table class="table table-striped table-bordered border-black">
         <thead class="table-success">
           <tr>
-            <th>Id</th>
-            <th>Titre</th>
-            <th>Ingredients</th>
-            <th>Type de recette</th>
-            <th>Catégorie</th>
+            <th class="text-center">Id</th>
+            <th class="text-left">Titre</th>
+            <th class="text-left">Ingredients</th>
+            <th class="text-left">Type de recette</th>
+            <th class="text-left">Catégorie</th>
             <th class="text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="recette in store.getFilteredRecettes()" :key="recette.id">
-            <td>{{ recette.id }}</td>
-            <td>{{ recette.title }}</td>
-            <td>{{ recette.ingredients }}</td>
-            <td>{{ recette.type }}</td>
-            <td>{{ recette.category}}</td>
+            <td class="text-center">{{ recette.id }}</td>
+            <td class="text-left">{{ recette.title }}</td>
+            <td class="text-left">{{ recette.ingredients }}</td>
+            <td class="text-left">{{ recette.type }}</td>
+            <td class="text-left">{{ recette.category }}</td>
             <td class="text-center">
               <button class="btn btn-sm" @click="openModal(recette)">
                 <i
                   class="fa-solid fa-eye"
-                  style="color: #4596d3; font-size: 25px"
+                  style="color: #4596d3; font-size: 20px"
                 ></i>
               </button>
               <RouterLink :to="{ path: `/modifierecette/${recette.id}` }">
                 <button class="btn btn-sm">
                   <i
                     class="fa-solid fa-pen-to-square"
-                    style="color: #1ac163; font-size: 25px"
+                    style="color: #1ac163; font-size: 20px"
                   ></i>
                 </button>
               </RouterLink>
               <button class="btn btn-sm" @click="destroyRecette(recette.id)">
                 <i
                   class="fa-solid fa-trash"
-                  style="color: #e30d0d; font-size: 25px"
+                  style="color: #e30d0d; font-size: 20px"
                 ></i>
               </button>
             </td>
@@ -64,12 +63,10 @@
     <div class="modal-content" @click.stop>
       <div class="modal-body">
         <h3>Détails du Recette</h3>
-            <p><strong>Titre :</strong> {{ selectedRecette.title }}</p>
-            <p>
-              <strong>Ingredients :</strong> {{ selectedRecette.ingredients }}
-            </p>
-            <p><strong>Type :</strong> {{ selectedRecette.type }}</p>
-            <p><strong>Category :</strong> {{ selectedRecette.category }}</p>
+        <p><strong>Titre :</strong> {{ selectedRecette.title }}</p>
+        <p><strong>Ingredients :</strong> {{ selectedRecette.ingredients }}</p>
+        <p><strong>Type :</strong> {{ selectedRecette.type }}</p>
+        <p><strong>Category :</strong> {{ selectedRecette.category }}</p>
       </div>
       <button class="btn btn-danger" @click="closeModal">Fermer</button>
     </div>
@@ -105,8 +102,23 @@ const destroyRecette = (id) => {
   store.deleteRecette(id);
 };
 </script>
-   
+
 <style scoped>
+@media (max-width: 576px) {
+  .btn i {
+    font-size: 16px !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .table {
+    font-size: 12px;
+  }
+  .table th, .table td {
+    padding: 8px;
+  }
+}
 .modal-overlay {
   position: fixed;
   top: 0;
