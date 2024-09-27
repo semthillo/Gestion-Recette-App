@@ -1,10 +1,9 @@
 <template>
   <div class="container">
     <form
-      @submit.prevent="addRecette"
+      @submit.prevent="handleAddRecipe"
       class="formulaire form mb-5 shadow p-3 mb-5 bg-body rounded"
     >
-    <h1>{{ `size is ${size}` }}</h1>
 
       <div class="mb-3">
         <label for="title" class="form-label">Tilte :</label>
@@ -17,11 +16,11 @@
         />
       </div>
       <div class="mb-3">
-        <label for="ingredient" class="form-label">Ingrédients :</label>
+        <label for="ingredients" class="form-label">Ingrédients :</label>
         <textarea
           class="form-control"
-          v-model="ingredient"
-          id="ingredient"
+          v-model="ingredients"
+          id="ingredients"
           required
         ></textarea>
       </div>
@@ -29,9 +28,27 @@
       <div class="mb-3">
         <label for="type" class="form-label">Type :</label>
         <select class="input form-select" v-model="type" id="type" required>
-          <option value="Entrée">Entrée</option>
-          <option value="Plat">Plat</option>
-          <option value="Dessert">Dessert</option>
+          <option value="entry">entry</option>
+          <option value="plat">plat</option>
+          <option value="desert">desert</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="category" class="form-label">Catégorie :</label>
+        <select
+          class="form-select"
+          v-model="selectedCategory"
+          id="category"
+          required
+        >
+          <option value="" disabled selected>-- Sélectionnez une catégorie --</option>
+          <option
+            v-for="category in store.categories"
+            :key="category.id"
+            :value="category.id"
+          >
+            {{ category.name }}
+          </option>
         </select>
       </div>
       <button class="clr btn text-white mt-3 mb-4 me-3">Ajouter</button>
@@ -48,44 +65,35 @@
 <script setup>
 import { useGestionStore } from "@/stores/gestion";
 import { useRouter } from "vue-router";
-// import axios from "axios";
 
 const router = useRouter();
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 const store = useGestionStore();
 const title = ref("");
-const ingredient = ref("");
+const ingredients = ref("");
 const type = ref("");
-// const size = ref(0);
-// const axiosAddRecette = async() => {
-//   try {
-//     const resp = await axios.get("http://localhost:3005/api/recipes");
-//     console.log(resp.data);
-    
-//     size.value = resp.data.length; 
-//   } catch (error) {
-    
-//   }  
- 
-// };
+const selectedCategory = ref("");
 
-const addRecette = async () => {
+
+onMounted(() => {
+  store.loadDataFromCategorieApi();
+});
+
+const handleAddRecipe = async () => {
   try {
-    await store.addRecete({
+    const newRecipe = {
     title: title.value,
-    ingredient: ingredient.value,
+    ingredients: ingredients.value,
     type: type.value,
-  });
-
-  title.value = "";
-  ingredient.value = "";
-  type.value = "";
-  router.push("/listrecette");
+    category_id: selectedCategory.value, 
+  };
+  await store.addRecete(newRecipe);
+  router.push("/listrecette"); 
   } catch (error) {
-    console.log(error)    
+    
   }
-  
 };
+
 </script> 
 
 <style scoped>

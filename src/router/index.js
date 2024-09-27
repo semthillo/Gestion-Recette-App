@@ -36,7 +36,7 @@ const router = createRouter({
       component: RecetteView,
     },
     {
-      path: "/ajoutrecette",
+      path: "/ajout-recette",
       component: AjoutRecette,
     },
     {

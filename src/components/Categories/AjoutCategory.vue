@@ -54,37 +54,13 @@ const router = useRouter();
 import { ref } from "vue";
 const store = useGestionStore();
 const name = ref("");
-// const size = ref(0);
-// const axiosAddRecette = async() => {
-//   try {
-//     const resp = await axios.get("http://localhost:3005/api/recipes");
-//     console.log(resp.data);
-    
-//     size.value = resp.data.length; 
-//   } catch (error) {
-    
-//   }  
- 
-// };
-
-// const addCategory = async () => {
-//   try {
-//     await store.addCategory(name.value);
-
-//   name.value = "";
-//   router.push("/list-category");
-//   } catch (error) {
-//     console.log(error)    
-//   }
-  
-// };
 const addCategory = async () => {
   try {
     await store.addCategory(name.value);
     name.value = "";
     router.push("/list-category");
   } catch (error) {
-    console.log(error.response.data);  // Voir les détails de l'erreur
+    console.log(error.response.data);
   }
 };
 

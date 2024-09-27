@@ -2,7 +2,7 @@
   <div class="page-background container bg-color mt-5">
     <RouterLink
       class="list text-decoration-none text-white me-5 fw-bold"
-      to="/ajoutrecette"
+      to="/ajout-recette"
     >
       <button
         class="clr btn text-white mt-5 mb-4 fw-bold"
@@ -20,6 +20,7 @@
             <th>Titre</th>
             <th>Ingredients</th>
             <th>Type de recette</th>
+            <th>Catégorie</th>
             <th class="text-center">Actions</th>
           </tr>
         </thead>
@@ -29,6 +30,9 @@
             <td>{{ recette.title }}</td>
             <td>{{ recette.ingredients }}</td>
             <td>{{ recette.type }}</td>
+            <!-- <td>{{ recette.category?.name }}</td> -->
+            <!-- <td>{{ recette.category_id ? recette.category.name : 'Aucune catégorie' }}</td> -->
+            <td>{{ recette.category || 'Aucune catégorie' }}</td>
             <td class="text-center">
               <button class="btn btn-sm" @click="openModal(recette)">
                 <i
@@ -65,6 +69,7 @@
               <strong>Ingredients :</strong> {{ selectedRecette.ingredients }}
             </p>
             <p><strong>Type :</strong> {{ selectedRecette.type }}</p>
+            <p><strong>Category :</strong> {{ selectedRecette.category }}</p>
       </div>
       <button class="btn btn-danger" @click="closeModal">Fermer</button>
     </div>
@@ -94,6 +99,7 @@ const closeModal = () => {
 };
 
 onMounted(() => {
+  store.loadDataFromCategorieApi();
   store.loadDataFromApi();
 });
 const destroyRecette = (id) => {
