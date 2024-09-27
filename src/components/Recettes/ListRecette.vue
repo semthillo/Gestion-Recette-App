@@ -1,5 +1,7 @@
 <template>
   <div class="page-background container bg-color mt-5">
+    <div class="mb-3">
+  </div>
     <RouterLink
       class="list text-decoration-none text-white me-5 fw-bold"
       to="/ajout-recette"
@@ -25,7 +27,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="recette in store.recettes" :key="recette.id">
+          <tr v-for="recette in store.getFilteredRecettes()" :key="recette.id">
             <td>{{ recette.id }}</td>
             <td>{{ recette.title }}</td>
             <td>{{ recette.ingredients }}</td>
@@ -88,6 +90,13 @@ const maskBtn = () => {
 };
 const isModalVisible = ref(false);
 const selectedRecette = ref(null);
+// const searchQuery = ref(""); 
+
+// const filteredRecettes = computed(() => {
+//   return store.recettes.filter((recette) =>
+//     recette.title.toLowerCase().includes(searchQuery.value.toLowerCase())
+//   );
+// });
 
 const openModal = (recete) => {
   selectedRecette.value = recete;

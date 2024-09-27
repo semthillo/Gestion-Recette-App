@@ -1,5 +1,10 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import { useGestionStore } from './stores/gestion';
+const store = useGestionStore();
+import { useRoute } from "vue-router";
+
+const route = useRoute();
 </script>
 
 <template>
@@ -12,14 +17,24 @@ import { RouterLink, RouterView } from 'vue-router'
             <i class="fas fa-bars"></i>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
+          
             <ul class="navbar-nav ms-auto">
+              <form class="d-flex ms-3" v-if="route.path === '/listrecette'">
+              <input
+                type="text"
+                class="form-control me-2"
+                v-model="store.searchQuery"
+                placeholder="Rechercher recette..."
+              />
+            </form>
               <li class="nav-item">
                 <RouterLink class="nav-link text-white fw-bold" to="/listrecette">Recette</RouterLink>
               </li>
               <li class="nav-item">
-                <RouterLink class="nav-link text-white fw-bold" to="/axios-categories">Axios Recette</RouterLink>
+                <RouterLink class="nav-link text-white fw-bold" to="/axios-categories">categorie</RouterLink>
               </li>
             </ul>
+           
           </div>
         </div>
       </nav>

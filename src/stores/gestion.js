@@ -8,7 +8,7 @@ export const useGestionStore = defineStore("gestion", {
     nextId: 2,
     categories: [],
     nextIdCate: 2,
-    error: null,
+    searchQuery: "",
   }),
 
   actions: {
@@ -20,6 +20,11 @@ export const useGestionStore = defineStore("gestion", {
     //     this.recettes = [];
     //   }
     // },
+    getFilteredRecettes() {
+      return this.recettes.filter(recette =>
+        recette.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    },
     getCategoryName(categoryId) {
       const category = this.categories.find(cat => cat.id === categoryId);
       return category ? category.name : 'Aucune catégorie';
