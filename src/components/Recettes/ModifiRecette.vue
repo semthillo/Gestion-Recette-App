@@ -74,48 +74,33 @@ const title = ref("");
 const ingredients = ref("");
 const type = ref("");
 const selectedCategory = ref("");
-
+const originalTitle = ref("");
 const id = Number(route.params.id);
 
-// onMounted(() => {
-//   const recette = store.recettes.find((recette) => recette.id === id);
-//   if (recette) {
-//     title.value = recette.title;
-//     ingredients.value = recette.ingredients;
-//     type.value = recette.type;
-//     selectedCategory.value = recette.category_id;
-//   }
-// });
 onMounted(() => {
-  // Charger les catégories si elles ne sont pas déjà présentes
-  // if (store.categories.length === 0) {
-  //   store.loadDataFromCategorieApi();
-  // }
-
   const recette = store.recettes.find((recette) => recette.id === id);
   if (recette) {
     title.value = recette.title;
     ingredients.value = recette.ingredients;
     type.value = recette.type;
     selectedCategory.value = recette.category_id;
+    originalTitle.value = recette.title;
   }
 });
-
 
 const handleUpdateRecette = () => {
   const updatedRecette = {
     id,
     title: title.value,
+    originalTitle: originalTitle.value,
     ingredients: ingredients.value,
     type: type.value,
     category_id: selectedCategory.value,
   };
-  console.log(updatedRecette); 
-  console.log('ID à mettre à jour:', id);
-  console.log('ID de la catégorie sélectionnée:', selectedCategory.value);
   store.updateRecette(updatedRecette);
   router.push("/listrecette");
 };
+
 </script>
 
 <style scoped>

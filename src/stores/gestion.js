@@ -12,14 +12,6 @@ export const useGestionStore = defineStore("gestion", {
   }),
 
   actions: {
-    // async loadDataFromApi() {
-    //   try {
-    //     const resp = await axios.get("http://localhost:3005/api/recipes");
-    //     this.recettes = resp.data;
-    //   } catch (error) {
-    //     this.recettes = [];
-    //   }
-    // },
     getFilteredRecettes() {
       return this.recettes.filter(recette =>
         recette.title.toLowerCase().includes(this.searchQuery.toLowerCase())
@@ -27,7 +19,8 @@ export const useGestionStore = defineStore("gestion", {
     },
     getCategoryName(categoryId) {
       const category = this.categories.find(cat => cat.id === categoryId);
-      return category ? category.name : 'Aucune catégorie';
+      return category.name;
+      // return category ? category.name : 'Aucune catégorie';
     },
 
     async loadDataFromApi() {
@@ -40,7 +33,6 @@ export const useGestionStore = defineStore("gestion", {
           title: recette.title,
           ingredients: recette.ingredients,
           type: recette.type,
-          // category_id: recette.category_id,
           category: this.getCategoryName(recette.category_id),
         }));
       } catch (error) {
@@ -93,13 +85,11 @@ export const useGestionStore = defineStore("gestion", {
 
         if (index !== -1) {
           await axios.put(`http://localhost:3005/api/recipes/${updatedRecette.id}`, updatedRecette);
-        // Recharger les recettes après la mise à jour
           await this.loadDataFromApi();
         }
         
       } catch (error) {
         console.error("Erreur lors de la mise à jour :", error);
-        // Gérer la réponse d'erreur, par exemple, définir this.error
       }
     },
   },

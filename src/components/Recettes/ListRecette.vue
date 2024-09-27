@@ -32,9 +32,7 @@
             <td>{{ recette.title }}</td>
             <td>{{ recette.ingredients }}</td>
             <td>{{ recette.type }}</td>
-            <!-- <td>{{ recette.category?.name }}</td> -->
-            <!-- <td>{{ recette.category_id ? recette.category.name : 'Aucune catégorie' }}</td> -->
-            <td>{{ recette.category || 'Aucune catégorie' }}</td>
+            <td>{{ recette.category}}</td>
             <td class="text-center">
               <button class="btn btn-sm" @click="openModal(recette)">
                 <i
@@ -79,7 +77,6 @@
 </template>
 
 <script setup>
-// import { ref } from "vue";
 import { onMounted, ref } from "vue";
 import { useGestionStore } from "@/stores/gestion";
 
@@ -90,13 +87,6 @@ const maskBtn = () => {
 };
 const isModalVisible = ref(false);
 const selectedRecette = ref(null);
-// const searchQuery = ref(""); 
-
-// const filteredRecettes = computed(() => {
-//   return store.recettes.filter((recette) =>
-//     recette.title.toLowerCase().includes(searchQuery.value.toLowerCase())
-//   );
-// });
 
 const openModal = (recete) => {
   selectedRecette.value = recete;
