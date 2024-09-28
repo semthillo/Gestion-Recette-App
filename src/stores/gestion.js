@@ -60,13 +60,17 @@ export const useGestionStore = defineStore("gestion", {
       try {
         await axios.delete(`http://localhost:3005/api/recipes/${id}`);
         await this.loadDataFromApi();
-      } catch (error) {}
+      } catch (error) {
+        throw error
+      }
     },
     async deleteCategory(id) {
       try {
         await axios.delete(`http://localhost:3005/api/categories/${id}`);
         await this.loadDataFromCategorieApi();
-      } catch (error) {}
+      } catch (error) {
+        alert("Cannot delete this category because it's used in recipes!");
+      }
     },
     async updateCategory(updatedCategory) {
       try {
@@ -76,7 +80,7 @@ export const useGestionStore = defineStore("gestion", {
           await this.loadDataFromCategorieApi();
         }
       } catch (error) {
-        console.error("Erreur lors de la mise à jour :", error);
+        throw error
       }
     },
     async updateRecette(updatedRecette) {
@@ -89,7 +93,7 @@ export const useGestionStore = defineStore("gestion", {
         }
         
       } catch (error) {
-        console.error("Erreur lors de la mise à jour :", error);
+        throw error
       }
     },
   },

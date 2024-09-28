@@ -88,7 +88,8 @@ onMounted(() => {
   }
 });
 
-const handleUpdateRecette = () => {
+const handleUpdateRecette = async() => {
+  try{
   const updatedRecette = {
     id,
     title: title.value,
@@ -97,8 +98,19 @@ const handleUpdateRecette = () => {
     type: type.value,
     category_id: selectedCategory.value,
   };
-  store.updateRecette(updatedRecette);
+  await store.updateRecette(updatedRecette);
   router.push("/listrecette");
+  }catch (error) {
+  if (error.response && error.response.status === 422) {
+      const errors = error.response.data.errors;
+      
+      errors.forEach((err) => {
+        alert(err.msg); 
+      });
+    } else {
+      alert("Une erreur inattendue est survenue.");
+    }
+  }
 };
 
 </script>

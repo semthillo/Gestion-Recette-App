@@ -88,7 +88,10 @@ onMounted(() => {
   store.loadDataFromCategorieApi();
 });
 const destroyCategory = (id) => {
-  store.deleteCategory(id);
+  const confirmation = confirm("Êtes-vous sûr de vouloir supprimer cette recette ?");
+  if (confirmation ) {
+    store.deleteCategory(id);
+  }
 };
 
 </script>

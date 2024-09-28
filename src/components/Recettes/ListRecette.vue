@@ -99,7 +99,10 @@ onMounted(() => {
   store.loadDataFromApi();
 });
 const destroyRecette = (id) => {
-  store.deleteRecette(id);
+  const confirmation = confirm("Êtes-vous sûr de vouloir supprimer cette recette ?");
+  if (confirmation) {
+    store.deleteRecette(id);
+  }
 };
 </script>
 

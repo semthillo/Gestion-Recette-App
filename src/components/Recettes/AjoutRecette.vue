@@ -90,7 +90,15 @@ const handleAddRecipe = async () => {
   await store.addRecete(newRecipe);
   router.push("/listrecette"); 
   } catch (error) {
-    
+  if (error.response && error.response.status === 422) {
+      const errors = error.response.data.errors;
+      
+      errors.forEach((err) => {
+        alert(err.msg); 
+      });
+    } else {
+      alert("Une erreur inattendue est survenue.");
+    }
   }
 };
 
