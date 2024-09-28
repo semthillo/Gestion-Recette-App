@@ -8,21 +8,19 @@ export const useGestionStore = defineStore("gestion", {
     nextId: 2,
     categories: [],
     nextIdCate: 2,
-    error: null,
+    searchQuery: "",
   }),
 
   actions: {
-    // async loadDataFromApi() {
-    //   try {
-    //     const resp = await axios.get("http://localhost:3005/api/recipes");
-    //     this.recettes = resp.data;
-    //   } catch (error) {
-    //     this.recettes = [];
-    //   }
-    // },
+    getFilteredRecettes() {
+      return this.recettes.filter(recette =>
+        recette.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    },
     getCategoryName(categoryId) {
       const category = this.categories.find(cat => cat.id === categoryId);
-      return category ? category.name : 'Aucune catégorie';
+      return category.name;
+      // return category ? category.name : 'Aucune catégorie';
     },
 
     async loadDataFromApi() {
@@ -35,7 +33,6 @@ export const useGestionStore = defineStore("gestion", {
           title: recette.title,
           ingredients: recette.ingredients,
           type: recette.type,
-          // category_id: recette.category_id,
           category: this.getCategoryName(recette.category_id),
         }));
       } catch (error) {
@@ -63,13 +60,17 @@ export const useGestionStore = defineStore("gestion", {
       try {
         await axios.delete(`http://localhost:3005/api/recipes/${id}`);
         await this.loadDataFromApi();
-      } catch (error) {}
+      } catch (error) {
+        throw error
+      }
     },
     async deleteCategory(id) {
       try {
         await axios.delete(`http://localhost:3005/api/categories/${id}`);
         await this.loadDataFromCategorieApi();
-      } catch (error) {}
+      } catch (error) {
+        alert("Cannot delete this category because it's used in recipes!");
+      }
     },
     async updateCategory(updatedCategory) {
       try {
@@ -79,7 +80,7 @@ export const useGestionStore = defineStore("gestion", {
           await this.loadDataFromCategorieApi();
         }
       } catch (error) {
-        console.error("Erreur lors de la mise à jour :", error);
+        throw error
       }
     },
     async updateRecette(updatedRecette) {
@@ -88,13 +89,11 @@ export const useGestionStore = defineStore("gestion", {
 
         if (index !== -1) {
           await axios.put(`http://localhost:3005/api/recipes/${updatedRecette.id}`, updatedRecette);
-        // Recharger les recettes après la mise à jour
           await this.loadDataFromApi();
         }
         
       } catch (error) {
-        console.error("Erreur lors de la mise à jour :", error);
-        // Gérer la réponse d'erreur, par exemple, définir this.error
+        throw error
       }
     },
   },

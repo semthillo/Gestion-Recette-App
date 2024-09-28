@@ -78,54 +78,57 @@ const title = ref("");
 const ingredients = ref("");
 const type = ref("");
 const selectedCategory = ref("");
-
+const originalTitle = ref("");
 const id = Number(route.params.id);
 import { getCurrentInstance } from 'vue';
+
 
 const { proxy } = getCurrentInstance();
 
 const changeLanguage = (locale) => {
   proxy.$i18n.locale = locale;
 };
-// onMounted(() => {
-//   const recette = store.recettes.find((recette) => recette.id === id);
-//   if (recette) {
-//     title.value = recette.title;
-//     ingredients.value = recette.ingredients;
-//     type.value = recette.type;
-//     selectedCategory.value = recette.category_id;
-//   }
-// });
-onMounted(() => {
-  // Charger les catégories si elles ne sont pas déjà présentes
-  // if (store.categories.length === 0) {
-  //   store.loadDataFromCategorieApi();
-  // }
 
+onMounted(() => {
   const recette = store.recettes.find((recette) => recette.id === id);
   if (recette) {
     title.value = recette.title;
     ingredients.value = recette.ingredients;
     type.value = recette.type;
-    selectedCategory.value = recette.category_id;
+    const category = store.categories.find(cat => cat.name === recette.category);
+    if (category) {
+      selectedCategory.value = category.id; 
+    }
+    originalTitle.value = recette.title;
+    console.log("Selected Category:", selectedCategory.value);
   }
 });
 
-
-const handleUpdateRecette = () => {
+const handleUpdateRecette = async() => {
+  try{
   const updatedRecette = {
     id,
     title: title.value,
+    originalTitle: originalTitle.value,
     ingredients: ingredients.value,
     type: type.value,
     category_id: selectedCategory.value,
   };
-  console.log(updatedRecette); 
-  console.log('ID à mettre à jour:', id);
-  console.log('ID de la catégorie sélectionnée:', selectedCategory.value);
-  store.updateRecette(updatedRecette);
+  await store.updateRecette(updatedRecette);
   router.push("/listrecette");
+  }catch (error) {
+  if (error.response && error.response.status === 422) {
+      const errors = error.response.data.errors;
+      
+      errors.forEach((err) => {
+        alert(err.msg); 
+      });
+    } else {
+      alert("Une erreur inattendue est survenue.");
+    }
+  }
 };
+
 </script>
 
 <style scoped>

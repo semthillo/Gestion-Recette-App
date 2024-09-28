@@ -13,10 +13,6 @@ Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
 
 - [Node.js](https://nodejs.org/) (version 12 ou supérieure)
 - VueJS `npm create vite@latest`
-- vue-router `npm install vue-router@next`
-- vue-pinia `npm install pinia`
-- Bootstrap `npm install bootstrap`
-- PopperJS `npm install @poperjs/core`
 
 
 ## Installation
@@ -52,12 +48,28 @@ npm run dev
 
 1. **Recette :** 
 
- - addRecette : cette fonction permet d'ajouter une recette.
+ - getAllRecipes : cette fonction permet de recuperer tout les recettes.
+   
+ - getAllRecipeById : cette fonction permet de recuperer une recette à partir de son id.
+   
+ - createRecipes : cette fonction permet d'ajouter une recette.
  
- - deleteRecette : cette fonction permet d'effacer une recette à partir de son id.
+ - deleteRecipes : cette fonction permet d'effacer une recette à partir de son id.
  
- - updateRecette :  cette fonction permet de modifier une recette.
+ - updateRecipes :  cette fonction permet de modifier une recette.
+1. **Category :** 
+
+ - getAllgories : cette fonction permet d'ajouter une categorie.
+   
+ - getAllgoryById : cette fonction permet d'ajouter une categorie.
+   
+ - createCategories : cette fonction permet d'ajouter une categorie.
+ 
+ - deleteCategories : cette fonction permet d'effacer une categorie à partir de son id.
+ 
+ - updateCategories :  cette fonction permet de modifier une categorie.
 
 ## Authors
- - [Ousmane Ibrahima Ly](https://github.com/Ousmanly)
+ - **GitHub** : [Ousmane Ibrahima Ly](https://github.com/Ousmanly)
+ - **GitHub** : [Sem Thillo](https://github.com/semthillo)
 

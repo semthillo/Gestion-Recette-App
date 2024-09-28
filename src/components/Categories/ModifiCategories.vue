@@ -46,24 +46,39 @@ const router = useRouter();
 const route = useRoute();
 
 const name = ref("");
-
+const originalName = ref("");
 const id = Number(route.params.id);
 
 onMounted(() => {
   const category = store.categories.find((category) => category.id === id);
   if (category) {
     name.value = category.name;
+    originalName.value = category.name;
   }
 });
 
-const handleUpdateCategory = () => {
-  const updatedCategory = {
-    id,
-    name: name.value,
-  };
+const handleUpdateCategory = async() => {
+  try{
+    const updatedCategory = {
+      id,
+      name: name.value,
+      originalName: originalName.value,
+    };
 
-  store.updateCategory(updatedCategory);
-  router.push("/list-category");
+    await store.updateCategory(updatedCategory);
+    router.push("/list-category");
+  }catch (error) {
+    if (error.response && error.response.status === 422) {
+      const errors = error.response.data.errors;
+      
+      errors.forEach((err) => {
+        alert(err.msg); 
+      });
+    } else {
+      alert("Une erreur inattendue est survenue.");
+    }
+
+  }  
 };
 </script>
 

@@ -29,33 +29,31 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="recette in store.recettes" :key="recette.id">
-            <td>{{ recette.id }}</td>
-            <td>{{ recette.title }}</td>
-            <td>{{ recette.ingredients }}</td>
-            <td>{{ recette.type }}</td>
-            <!-- <td>{{ recette.category?.name }}</td> -->
-            <!-- <td>{{ recette.category_id ? recette.category.name : 'Aucune catégorie' }}</td> -->
-            <td>{{ recette.category || 'Aucune catégorie' }}</td>
+          <tr v-for="recette in store.getFilteredRecettes()" :key="recette.id">
+            <td class="text-center">{{ recette.id }}</td>
+            <td class="text-left">{{ recette.title }}</td>
+            <td class="text-left">{{ recette.ingredients }}</td>
+            <td class="text-left">{{ recette.type }}</td>
+            <td class="text-left">{{ recette.category }}</td>
             <td class="text-center">
               <button class="btn btn-sm" @click="openModal(recette)">
                 <i
                   class="fa-solid fa-eye"
-                  style="color: #4596d3; font-size: 25px"
+                  style="color: #4596d3; font-size: 20px"
                 ></i>
               </button>
               <RouterLink :to="{ path: `/modifierecette/${recette.id}` }">
                 <button class="btn btn-sm">
                   <i
                     class="fa-solid fa-pen-to-square"
-                    style="color: #1ac163; font-size: 25px"
+                    style="color: #1ac163; font-size: 20px"
                   ></i>
                 </button>
               </RouterLink>
               <button class="btn btn-sm" @click="destroyRecette(recette.id)">
                 <i
                   class="fa-solid fa-trash"
-                  style="color: #e30d0d; font-size: 25px"
+                  style="color: #e30d0d; font-size: 20px"
                 ></i>
               </button>
             </td>
@@ -81,7 +79,6 @@
 </template>
 
 <script setup>
-// import { ref } from "vue";
 import { onMounted, ref } from "vue";
 import { useGestionStore } from "@/stores/gestion";
 
@@ -107,7 +104,10 @@ onMounted(() => {
   store.loadDataFromApi();
 });
 const destroyRecette = (id) => {
-  store.deleteRecette(id);
+  const confirmation = confirm("Êtes-vous sûr de vouloir supprimer cette recette ?");
+  if (confirmation) {
+    store.deleteRecette(id);
+  }
 };
 import { getCurrentInstance } from 'vue';
 
@@ -117,8 +117,23 @@ const changeLanguage = (locale) => {
   proxy.$i18n.locale = locale;
 };
 </script>
-   
+
 <style scoped>
+@media (max-width: 576px) {
+  .btn i {
+    font-size: 16px !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .table {
+    font-size: 12px;
+  }
+  .table th, .table td {
+    padding: 8px;
+  }
+}
 .modal-overlay {
   position: fixed;
   top: 0;

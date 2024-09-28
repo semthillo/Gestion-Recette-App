@@ -65,7 +65,16 @@ const addCategory = async () => {
     name.value = "";
     router.push("/list-category");
   } catch (error) {
-    console.log(error.response.data);
+    if (error.response && error.response.status === 422) {
+      const errors = error.response.data.errors;
+      
+      errors.forEach((err) => {
+        alert(err.msg); 
+      });
+    } else {
+      alert("Une erreur inattendue est survenue.");
+    }
+
   }
 };
 const { proxy } = getCurrentInstance();

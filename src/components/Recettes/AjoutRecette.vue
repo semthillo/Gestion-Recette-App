@@ -32,6 +32,8 @@
       <div class="mb-3">
         <label for="type" class="form-label">{{ $t('type') }} :</label>
         <select class="input form-select" v-model="type" id="type" required>
+
+          <option value="" disabled selected>Sélectionnez un type de recette</option>
           <option value="entry">{{ $t('entry') }}</option>
           <option value="plat">{{ $t('main_course') }}</option>
           <option value="desert">{{ $t('dessert') }}</option>
@@ -94,7 +96,15 @@ const handleAddRecipe = async () => {
   await store.addRecete(newRecipe);
   router.push("/listrecette"); 
   } catch (error) {
-    
+  if (error.response && error.response.status === 422) {
+      const errors = error.response.data.errors;
+      
+      errors.forEach((err) => {
+        alert(err.msg); 
+      });
+    } else {
+      alert("Une erreur inattendue est survenue.");
+    }
   }
 };
 const { proxy } = getCurrentInstance();
