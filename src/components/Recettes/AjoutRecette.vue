@@ -28,6 +28,7 @@
       <div class="mb-3">
         <label for="type" class="form-label">Type :</label>
         <select class="input form-select" v-model="type" id="type" required>
+          <option value="" disabled selected>Sélectionnez un type de recette</option>
           <option value="entry">entry</option>
           <option value="plat">plat</option>
           <option value="desert">desert</option>
@@ -41,7 +42,7 @@
           id="category"
           required
         >
-          <option value="" disabled selected>-- Sélectionnez une catégorie --</option>
+          <option value="" disabled selected>Sélectionnez une catégorie</option>
           <option
             v-for="category in store.categories"
             :key="category.id"

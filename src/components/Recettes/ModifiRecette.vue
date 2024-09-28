@@ -40,7 +40,7 @@
           id="category"
           required
         >
-          <option value="" disabled selected>-- Sélectionnez une catégorie --</option>
+          <option value="" disabled selected>Sélectionnez une catégorie</option>
           <option
             v-for="category in store.categories"
             :key="category.id"
@@ -83,8 +83,12 @@ onMounted(() => {
     title.value = recette.title;
     ingredients.value = recette.ingredients;
     type.value = recette.type;
-    selectedCategory.value = recette.category_id;
+    const category = store.categories.find(cat => cat.name === recette.category);
+    if (category) {
+      selectedCategory.value = category.id; 
+    }
     originalTitle.value = recette.title;
+    console.log("Selected Category:", selectedCategory.value);
   }
 });
 
