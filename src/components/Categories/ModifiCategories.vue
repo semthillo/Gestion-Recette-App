@@ -1,11 +1,15 @@
 <template>
   <div class="container mt-5">
+    <div class="mb-4 d-flex justify-content-end">
+      <button @click="changeLanguage('en')" class="btn btn-info me-2">{{ $t('buttons.english') }}</button>
+      <button @click="changeLanguage('fr')" class="btn btn-info">{{ $t('buttons.french') }}</button>
+    </div>
     <form
       @submit.prevent="handleUpdateCategory"
       class="formulaire form mb-5 shadow p-3 mb-5 bg-body rounded"
     >
       <div class="mb-3">
-        <label for="name" class="form-label">Name :</label>
+        <label for="name" class="form-label">{{ $t('form.name') }}  :</label>
         <input
           type="text"
           class="form-control"
@@ -14,12 +18,12 @@
           required
         />
       </div>
-      <button class="clr btn mt-3 mb-4 me-3 text-white">Enregistrer</button>
+      <button class="clr btn mt-3 mb-4 me-3 text-white">{{ $t('save') }}</button>
       <RouterLink
         class="list text-decoration-none text-white me-5 fw-bold"
         to="/list-category"
       >
-        <button class="btn btn-danger mt-3 mb-4">Annuler</button>
+        <button class="btn btn-danger mt-3 mb-4">{{ $t('cancel') }}</button>
       </RouterLink>
     </form>
   </div>
@@ -29,7 +33,14 @@
 import { useGestionStore } from "@/stores/gestion";
 import { useRoute, useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
+import { getCurrentInstance } from 'vue';
 
+const { proxy } = getCurrentInstance();
+
+const changeLanguage = (locale) => {
+  proxy.$i18n.locale = locale;
+};
+c
 const store = useGestionStore();
 const router = useRouter();
 const route = useRoute();

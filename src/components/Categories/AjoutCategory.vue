@@ -1,5 +1,9 @@
 <template>
   <div class="container">
+    <div class="mb-4 d-flex justify-content-end">
+      <button @click="changeLanguage('en')" class="btn btn-info me-2">{{ $t('buttons.english') }}</button>
+      <button @click="changeLanguage('fr')" class="btn btn-info">{{ $t('buttons.french') }}</button>
+    </div>
     <form
       @submit.prevent="addCategory"
       class="formulaire form mb-5 shadow p-3 mb-5 bg-body rounded"
@@ -7,7 +11,7 @@
     <!-- <h1>{{ `size is ${size}` }}</h1> -->
 
       <div class="mb-3">
-        <label for="name" class="form-label">Name :</label>
+        <label for="name" class="form-label">{{ $t('form.name') }} :</label>
         <input
           type="text"
           class="form-control"
@@ -34,12 +38,12 @@
           <option value="Dessert">Dessert</option>
         </select>
       </div> -->
-      <button class="clr btn text-white mt-3 mb-4 me-3">Ajouter</button>
+      <button class="clr btn text-white mt-3 mb-4 me-3"> {{ $t('buttons.add') }}</button>
       <RouterLink
         class="list text-decoration-none text-white me-5 fw-bold"
         to="/list-category"
       >
-        <button class="btn btn-danger mt-3 mb-4">Annuler</button>
+        <button class="btn btn-danger mt-3 mb-4">{{ $t('buttons.cancel') }}</button>
       </RouterLink>
     </form>
   </div>
@@ -48,6 +52,7 @@
 <script setup>
 import { useGestionStore } from "@/stores/gestion";
 import { useRouter } from "vue-router";
+import { getCurrentInstance } from 'vue';
 // import axios from "axios";
 
 const router = useRouter();
@@ -72,7 +77,11 @@ const addCategory = async () => {
 
   }
 };
+const { proxy } = getCurrentInstance();
 
+const changeLanguage = (locale) => {
+  proxy.$i18n.locale = locale;
+};
 
 </script> 
 

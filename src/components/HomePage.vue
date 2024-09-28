@@ -1,6 +1,11 @@
 <!-- <template>
   <div class="page-background container mt-5">
-    <h1 class="animated-header mt-4 text-center">Welcome you're at a good place</h1>
+    <div class="mb-4 d-flex justify-content-end">
+      <button @click="changeLanguage('en')" class="btn btn-primary me-2">English</button>
+      <button @click="changeLanguage('fr')" class="btn btn-primary">Français</button>
+    </div>
+
+    <h1 class="animated-header mt-4 text-center">{{ $t('welcome_message') }}</h1>
     <div class="d-flex flex-row justify-content-center">
       <div class="card mt-5 me-5" style="width: 18rem; height: fit-content">
         <img
@@ -12,9 +17,7 @@
         <div class="card-body">
           <h5 class="card-title">Poulet Yassa</h5>
           <p class="card-text">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas,
-            vitae quaerat commodi illum earum aspernatur aut, doloremque beatae
-            omnis quisquam id quidem aliquam.
+            {{ $t('yassa.description') }}
           </p>
         </div>
       </div>
@@ -28,9 +31,7 @@
         <div class="card-body">
           <h5 class="card-title">Niébé</h5>
           <p class="card-text">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas,
-            vitae quaerat commodi illum earum aspernatur aut, doloremque beatae
-            omnis quisquam id quidem aliquam.
+            {{ $t('niebe.description') }}
           </p>
         </div>
       </div>
@@ -44,9 +45,7 @@
         <div class="card-body">
           <h5 class="card-title">Riz au Poisson</h5>
           <p class="card-text">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas,
-            vitae quaerat commodi illum earum aspernatur aut, doloremque beatae
-            omnis quisquam id quidem aliquam.
+            {{ $t('rice.description') }}
           </p>
         </div>
       </div>
@@ -55,6 +54,12 @@
 </template>
 
 <script setup>
+import { getCurrentInstance } from 'vue';
+const { proxy } = getCurrentInstance();
+
+const changeLanguage = (locale) => {
+  proxy.$i18n.locale = locale;
+};
 </script>
 
 <style scoped>
