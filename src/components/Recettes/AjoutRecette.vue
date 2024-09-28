@@ -71,7 +71,7 @@ import { useGestionStore } from "@/stores/gestion";
 import { useRouter } from "vue-router";
 import { ref, getCurrentInstance } from "vue";
 const router = useRouter();
-import { ref, onMounted } from "vue";
+import { onMounted } from "vue";
 const store = useGestionStore();
 const title = ref("");
 const ingredients = ref("");

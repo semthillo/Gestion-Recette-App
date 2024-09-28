@@ -1,11 +1,15 @@
 <template>
   <div class="container mt-5">
+    <div class="mb-4 d-flex justify-content-end">
+      <button @click="changeLanguage('en')" class="btn btn-info me-2">{{ $t('buttons.english') }}</button>
+      <button @click="changeLanguage('fr')" class="btn btn-info">{{ $t('buttons.french') }}</button>
+    </div>
     <form
       @submit.prevent="handleUpdateCategory"
       class="formulaire form mb-5 shadow p-3 mb-5 bg-body rounded"
     >
       <div class="mb-3">
-        <label for="name" class="form-label">{{ $t('category_name') }} :</label>
+        <label for="name" class="form-label">{{ $t('form.name') }}  :</label>
         <input
           type="text"
           class="form-control"

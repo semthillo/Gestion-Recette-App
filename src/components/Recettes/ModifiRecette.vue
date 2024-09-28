@@ -37,7 +37,7 @@
         </select>
       </div>
       <div class="mb-3">
-        <label for="category" class="form-label">category :</label>
+        <label for="category" class="form-label">{{ $t('category') }} :</label>
         <select
           class="form-select"
           v-model="selectedCategory"
