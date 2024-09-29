@@ -1,9 +1,5 @@
 <template>
   <div class="container mt-5">
-    <!-- <div class="mb-4 d-flex justify-content-end">
-      <button @click="changeLanguage('en')" class="btn btn-primary me-2">English</button>
-      <button @click="changeLanguage('fr')" class="btn btn-primary">Français</button>
-    </div> -->
     <form
       @submit.prevent="handleUpdateRecette"
       class="formulaire form mb-5 shadow p-3 mb-5 bg-body rounded"

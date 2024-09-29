@@ -1,15 +1,9 @@
 <template>
   <div class="page-background container mt-5">
-    <div class="mb-4 d-flex justify-content-end">
-      <button @click="changeLanguage('en')" class="btn btn-primary me-2">English</button>
-      <button @click="changeLanguage('fr')" class="btn btn-primary">Français</button>
-    </div>
 
     <h1 class="animated-header mt-4 text-center">{{ $t('welcome_message') }}</h1>
 
-    <!-- Ajouter un row Bootstrap -->
     <div class="row mt-5 justify-content-center">
-      <!-- Colonne responsive pour la première carte -->
       <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
         <div class="card h-100">
           <img
@@ -27,7 +21,6 @@
         </div>
       </div>
 
-      <!-- Colonne responsive pour la deuxième carte -->
       <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
         <div class="card h-100">
           <img
@@ -45,7 +38,6 @@
         </div>
       </div>
 
-      <!-- Colonne responsive pour la troisième carte -->
       <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
         <div class="card h-100">
           <img
