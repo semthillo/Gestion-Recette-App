@@ -5,7 +5,7 @@
   
   "navbar": {
     "recipes": "Recipe",
-    "axiosRecipes": "Axios Recipe"
+    "axiosRecipes": "Category"
   },
   "buttons": {
     "english": "English",
@@ -34,7 +34,7 @@
   "recipe": "Recipe",
   "id": "ID",
   "title": "Title",
-  "Recipe management":"Recipe management",
+  "Recipe management":"Recipe Management",
   "recipe_type": "Recipe Type",
   "actions": "Actions",
   "recipe_details": "Recipe Details",

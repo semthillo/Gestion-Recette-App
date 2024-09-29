@@ -5,6 +5,15 @@ const store = useGestionStore();
 import { useRoute } from "vue-router";
 
 const route = useRoute();
+
+import { getCurrentInstance } from 'vue';
+
+
+const { proxy } = getCurrentInstance();
+
+const changeLanguage = (locale) => {
+  proxy.$i18n.locale = locale;
+};
 </script>
 
 <template>
@@ -35,7 +44,10 @@ const route = useRoute();
                 <RouterLink class="nav-link text-white fw-bold" to="/axios-categories">{{ $t('navbar.axiosRecipes') }}</RouterLink>
               </li>
             </ul>
-           
+            <select name="lang" id="lang" @change="changeLanguage($event.target.value)">
+                <option value="en">En</option>
+                <option value="fr">Fr</option>
+              </select>
           </div>
         </div>
       </nav>

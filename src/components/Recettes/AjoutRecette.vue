@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <div class="mb-4 d-flex justify-content-end">
+    <!-- <div class="mb-4 d-flex justify-content-end">
       <button @click="changelocaleuage('en')" class="btn btn-primary me-2">English</button>
       <button @click="changelocaleuage('fr')" class="btn btn-primary">Français</button>
-    </div>
+    </div> -->
     <form
       @submit.prevent="handleAddRecipe"
       class="formulaire form mb-5 shadow p-3 mb-5 bg-body rounded"
@@ -34,9 +34,9 @@
         <select class="input form-select" v-model="type" id="type" required>
 
           <option value="" disabled selected>Sélectionnez un type de recette</option>
-          <option value="entry">{{ $t('entry') }}</option>
-          <option value="plat">{{ $t('main_course') }}</option>
-          <option value="desert">{{ $t('dessert') }}</option>
+          <option value="entry">entry</option>
+          <option value="plat">plat</option>
+          <option value="desert">desert</option>
         </select>
       </div>
       <div class="mb-3">

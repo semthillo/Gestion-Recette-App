@@ -1,9 +1,9 @@
 <template>
   <div class="page-background container bg-color mt-5">
-    <div class="mb-4 d-flex justify-content-end">
+    <!-- <div class="mb-4 d-flex justify-content-end">
       <button @click="changeLanguage('en')" class="btn btn-primary me-2">English</button>
       <button @click="changeLanguage('fr')" class="btn btn-primary">Français</button>
-    </div>
+    </div> -->
     <RouterLink
       class="list text-decoration-none text-white me-5 fw-bold"
       to="/ajout-recette"
