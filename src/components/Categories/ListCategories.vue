@@ -1,5 +1,9 @@
 <template>
   <div class="page-background container bg-color mt-5">
+    <div class="mb-4 d-flex justify-content-end">
+      <button @click="changeLanguage('en')" class="btn btn-primary me-2">{{ $t('buttons.english') }}</button>
+      <button @click="changeLanguage('fr')" class="btn btn-primary">{{ $t('buttons.french') }}</button>
+    </div>
     <RouterLink
       class="list text-decoration-none text-white me-5 fw-bold"
       to="/ajout-category"
@@ -9,7 +13,7 @@
         v-if="affichebtn"
         @click="maskBtn"
       >
-        Ajouter une categorie
+      {{ $t('buttons.add') }}
       </button>
     </RouterLink>
     <div class="table-responsive">
@@ -17,7 +21,7 @@
         <thead class="table-success">
           <tr>
             <th>Id</th>
-            <th>Name</th>
+            <th>{{ $t('table.name') }}</th>
             <th class="text-center">Actions</th>
           </tr>
         </thead>
@@ -55,10 +59,10 @@
   <div v-if="isModalVisible" class="modal-overlay" @click="closeModal">
     <div class="modal-content" @click.stop>
       <div class="modal-body">
-        <h3>Détails du Recette</h3>
-            <p><strong>Name :</strong> {{ selectedRecette.name }}</p>
+        <h3>{{ $t('modal.categoryDetails') }}</h3>
+            <p><strong>{{ $t('modal.name') }}  :</strong> {{ selectedRecette.name }}</p>
       </div>
-      <button class="btn btn-danger" @click="closeModal">Fermer</button>
+      <button class="btn btn-danger" @click="closeModal">{{ $t('buttons.close') }}</button>
     </div>
   </div>
 </template>
@@ -67,6 +71,12 @@
 import { onMounted, ref } from "vue";
 import { useGestionStore } from "@/stores/gestion";
 const store = useGestionStore();
+import { getCurrentInstance } from 'vue';
+const { proxy } = getCurrentInstance();
+
+const changeLanguage = (locale) => {
+  proxy.$i18n.locale = locale;
+};
 
 let affichebtn = true;
 const maskBtn = () => {
