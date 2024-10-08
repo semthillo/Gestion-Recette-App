@@ -70,6 +70,5 @@ npm run dev
  - updateCategories :  cette fonction permet de modifier une categorie.
 
 ## Authors
- - **GitHub** : [Ousmane Ibrahima Ly](https://github.com/Ousmanly)
  - **GitHub** : [Sem Thillo](https://github.com/semthillo)
 
