@@ -1,4 +1,4 @@
-# vue-gestion-recette
+# Application de gestion recette
 
 ## Description
 

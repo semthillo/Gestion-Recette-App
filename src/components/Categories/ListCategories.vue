@@ -62,7 +62,7 @@
         <h3>{{ $t('modal.categoryDetails') }}</h3>
             <p><strong>{{ $t('modal.name') }}  :</strong> {{ selectedRecette.name }}</p>
       </div>
-      <button class="btn btn-danger" @click="closeModal">{{ $t('buttons.close') }}</button>
+      <button class="btn btn-danger" @click="closeModal">{{ $t('close') }}</button>
     </div>
   </div>
 </template>
