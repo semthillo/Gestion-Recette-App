@@ -22,13 +22,13 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 1. **Clonez le repository :**
 
     ```bash
-    https://github.com/Ousmanly/vue-gestion-recette.git
+    https://github.com/semthillo/Gestion-Recette-App.git
     ```
 
 2. **Accédez au dossier du projet :**
 
     ```bash
-    cd vue-gestion-tache
+    cd Gestion-Recette-App
     ```
 
 3. **Installez les dépendances :**
